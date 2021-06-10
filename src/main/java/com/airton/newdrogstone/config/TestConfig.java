@@ -29,6 +29,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private ProdutoRepositorio produtoRepositorio;
 
+    @Autowired
+    private PedidoProdutoRepositorio pedidoProdutoRepositorio;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -51,9 +54,6 @@ public class TestConfig implements CommandLineRunner {
 
         produtoRepositorio.saveAll((Arrays.asList(pd1,pd2,pd3)));
 
-
-
-
         Usuario u1 = new Usuario(null, "José Airton", "Admnistrador", "airton", "12345");
         Usuario u2 = new Usuario(null, "Augusto Marcos", "Vendedor", "marcos", "12345");
         Usuario u3 = new Usuario(null, "Jonas Filipe", "Estoque", "jonas", "12345");
@@ -72,5 +72,12 @@ public class TestConfig implements CommandLineRunner {
 
         pedidoRepositorio.saveAll((Arrays.asList(p1,p2,p3)));
 
+        PedidoProduto pp1 = new PedidoProduto(p1, pd1, 2, pd1.getPreco());
+        PedidoProduto pp2 = new PedidoProduto(p1, pd2, 4, pd2.getPreco());
+        PedidoProduto pp3 = new PedidoProduto(p2, pd3, 1, pd3.getPreco());
+        PedidoProduto pp4 = new PedidoProduto(p2, pd2, 5, pd3.getPreco());
+        PedidoProduto pp5 = new PedidoProduto(p3, pd1, 3, pd3.getPreco());
+
+        pedidoProdutoRepositorio.saveAll((Arrays.asList(pp1,pp2,pp3,pp4,pp5)));
     }
 }

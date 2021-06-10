@@ -1,6 +1,7 @@
 package com.airton.newdrogstone.entidades;
 
 import com.airton.newdrogstone.entidades.PK.PedidoProdutoPK;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -13,7 +14,7 @@ import java.util.Objects;
 public class PedidoProduto implements Serializable {
 
     @EmbeddedId
-    private PedidoProdutoPK id;
+    private PedidoProdutoPK id = new PedidoProdutoPK();
 
     private Integer quantidade;
     private Double preço;
@@ -27,6 +28,7 @@ public class PedidoProduto implements Serializable {
         this.preço = preço;
     }
 
+    @JsonIgnore
     public Pedido getPedido(){
         return  id.getPedido(); // retorna o id do pedido que foi instanciado no construtor
     }
