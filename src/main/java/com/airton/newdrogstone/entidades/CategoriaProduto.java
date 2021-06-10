@@ -7,29 +7,25 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "tb_produto")
-public class Produto implements Serializable {
+@Table(name = "tb_categoria_produto")
+public class CategoriaProduto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private String descricao;
-    private Double preco;
 
     @Transient
-    Set<CategoriaProduto> categorias = new HashSet<>();
+    private Set<Produto> produtos = new HashSet<>();
 
-    public Produto(){
+    public CategoriaProduto(){}
 
-    }
-
-    public Produto(Long id, String nome, String descricao, Double preco) {
+    public CategoriaProduto(Long id, String nome) {
         this.id = id;
         this.nome = nome;
-        this.descricao = descricao;
-        this.preco = preco;
     }
+
+
 
     public Long getId() {
         return id;
@@ -47,28 +43,16 @@ public class Produto implements Serializable {
         this.nome = nome;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(Double preco) {
-        this.preco = preco;
+    public Set<Produto> getProdutos() {
+        return produtos;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Produto)) return false;
-        Produto produto = (Produto) o;
-        return Objects.equals(getId(), produto.getId());
+        if (!(o instanceof CategoriaProduto)) return false;
+        CategoriaProduto that = (CategoriaProduto) o;
+        return Objects.equals(getId(), that.getId());
     }
 
     @Override
