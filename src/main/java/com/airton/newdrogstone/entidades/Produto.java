@@ -17,7 +17,11 @@ public class Produto implements Serializable {
     private String descricao;
     private Double preco;
 
-    @Transient
+    @ManyToMany
+    @JoinTable(name = "tb_produtoCategoria",
+            joinColumns = @JoinColumn(name = "produto_id"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id")
+    )
     Set<CategoriaProduto> categorias = new HashSet<>();
 
     public Produto(){
@@ -61,6 +65,10 @@ public class Produto implements Serializable {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public Set<CategoriaProduto> getCategorias() {
+        return categorias;
     }
 
     @Override

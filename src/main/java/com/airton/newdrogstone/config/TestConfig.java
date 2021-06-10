@@ -42,7 +42,16 @@ public class TestConfig implements CommandLineRunner {
         Produto pd2 = new Produto(null, "Buscopan", "Buscopan Composto 20 Comprimidos Revestidos", 14.40);
         Produto pd3 = new Produto(null, "Tylenol", "TYLENOL 750MG COM 20 COMPRIMIDOS", 30.28);
 
+
+        pd1.getCategorias().add(cp1);
+        pd1.getCategorias().add(cp3);
+        pd2.getCategorias().add(cp2);
+        pd2.getCategorias().add(cp3);
+        pd3.getCategorias().add(cp1);
+
         produtoRepositorio.saveAll((Arrays.asList(pd1,pd2,pd3)));
+
+
 
 
         Usuario u1 = new Usuario(null, "José Airton", "Admnistrador", "airton", "12345");

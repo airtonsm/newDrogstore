@@ -15,7 +15,7 @@ public class CategoriaProduto implements Serializable {
     private Long id;
     private String nome;
 
-    @Transient
+    @ManyToMany(mappedBy = "categorias") //mapping da collection da outra classe relacionada
     private Set<Produto> produtos = new HashSet<>();
 
     public CategoriaProduto(){}
@@ -24,8 +24,6 @@ public class CategoriaProduto implements Serializable {
         this.id = id;
         this.nome = nome;
     }
-
-
 
     public Long getId() {
         return id;
